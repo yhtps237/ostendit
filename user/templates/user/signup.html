@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-8">
+    <div class="col-md-2">
+        <h2>Sign Up</h2>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+            </p>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Sign up</button>
+        </form>
+        <hr>
+        <div class="text-center">
+            Do you already have an account? <a href="{% url 'user:login_view' %}">Login here</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

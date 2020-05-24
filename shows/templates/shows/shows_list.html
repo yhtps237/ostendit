@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}
+{% if all %}
+All
+{% elif animation %}
+Animation
+{% else %}
+Live Action
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% for show in queryset %}
+    {% include 'shows/list_inline.html' with  show=show update_delete=False col=False truncate=True detail=False %}
+    {% endfor %}
+</div>
+
+<br>
+<div class="text-center">
+    <p>
+        This site created by Ramil Salayev using Django3.<br>
+        You can contact me with c0d3r2001@gmail.com.<br>
+        Source Code on <a href="https://www.github.com">github</a>. Enjoy :)
+    </p>
+</div>
+
+{% if not user.is_authenticated %}
+<div class="text-center">
+    <p><a href="{% url 'user:login_view' %}">Login</a> to see more.</p>
+
+</div>
+{% endif %}
+
+{% endblock %}

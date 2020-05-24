@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}
+{{obj.title}}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% include 'shows/list_inline.html' with  show=obj update_delete=True col=True truncate=False detail=True %}
+
+
+</div>
+
+{% include 'comments/comment.html' with comments=comments %}
+{% endblock %}

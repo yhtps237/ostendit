@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}
+Search |
+{% endblock %}
+
+{% block content %}
+<h3>You look for {{query}}</h3>
+<div class="row">
+
+
+    {% for show in list %}
+    {% include 'shows/list_inline.html' with  show=show update_delete=False col=False truncate=True detail=False %}
+    {% endfor %}
+</div>
+{% endblock %}

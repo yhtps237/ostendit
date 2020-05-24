@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user == request.user %}
+<div class="text-center">
+    <h1>Hello {{user}}</h1>
+</div>
+{% endif %}
+<br>
+<div class="row">
+    {% if queryset %}
+    {% for i in queryset %}
+    {% include 'shows/list_inline.html' with show=i truncate=True details=False update_delete=False col=False %}
+    {% endfor %}
+
+    {% else %}
+    <div class="text-center">
+        <h3>You haven't share anythng yet, Would you like to share a new <a href="/shows/new/">tv-show?</a></h3>
+    </div>
+    {% endif %}
+
+
+
+</div>
+{% if not request.user.is_authenticated %}
+<div class="text-center">
+    <p><a href="/user/login/">Login</a> to see more.</p>
+
+</div>
+{% endif %}
+{% endblock %}
