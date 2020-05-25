@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <div class=" {% if col %} col-12 {% else %} col-6 {% endif %} col-3 mx-auto">
     <div class="card">
-        <div class="card-header text-center">
-            {{show.user}}<br>
-            <small class="text-muted">{{show.published}}</small>
+        <div class="card-header bg-dark text-center">
+            <a href="{% url 'user:user_profile_view' show.user %}" class="text-light card-link">{{show.user}}</a><br>
+            <small class="text-light text-muted">{{show.published}}</small>
         </div>
         <div class="card-body">
             {% if show.image %}
-            <img src="{{show.image.url}}" alt="image" {% if not detail %} width="250" height="250" {% else %}
-                {% endif %} class="card-img-top">
+            <img src="{{show.image.url}}" alt="image" class="card-img-top">
             {% endif %}
             <h2 class="card-title">{{show.title}}</h2>
             <p class="card-text">
