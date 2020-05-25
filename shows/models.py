@@ -43,7 +43,7 @@ class Shows(models.Model):
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='image/', blank=True)
     content = models.TextField()
-    animation = models.BooleanField(default=False)
+    animation = models.BooleanField()
     published = models.DateTimeField(
         auto_now=False, auto_now_add=False, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -61,3 +61,6 @@ class Shows(models.Model):
 
     def get_delete_url(self):
         return f'{self.get_absolute_url()}/delete/'
+
+    def __str__(self):
+        return self.title
