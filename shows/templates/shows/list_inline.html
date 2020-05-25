@@ -7,7 +7,9 @@
         </div>
         <div class="card-body">
             {% if show.image %}
-            <img src="{{show.image.url}}" alt="image" class="card-img-top">
+            <a href="{{show.get_absolute_url}}">
+                <img src="{{show.image.url}}" alt="image" class="card-img-top">
+            </a>
             {% endif %}
             <h2 class="card-title">{{show.title}}</h2>
             <p class="card-text">
