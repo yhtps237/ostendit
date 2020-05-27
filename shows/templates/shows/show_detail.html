@@ -2,15 +2,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{obj.title}}
+{{obj.user}} | {{obj.title}}
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    {% include 'shows/list_inline.html' with  show=obj update_delete=True col=True truncate=False detail=True %}
-
-
-</div>
+{% include 'shows/list_inline.html' with  show=obj update_delete=True col=False  truncate=False detail=True %}
 
 {% include 'comments/comment.html' with comments=comments %}
 {% endblock %}

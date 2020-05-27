@@ -6,7 +6,8 @@ from django.conf import settings
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.SET_NULL, null=True)
-    slug = models.SlugField(unique=True)
+    commented_to = models.SlugField()
+    slug = models.SlugField(unique=False)
     comment = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 

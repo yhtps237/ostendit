@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<div class=" {% if col %} col-12 {% else %} col-6 {% endif %} col-3 mx-auto">
-    <div class="card">
+<div class=" {% if col %} col-6 {% else %} col-12 {% endif %} col-3 mx-auto">
+    <!-- <div class="card">
         <div class="card-header bg-dark text-center">
             <a href="{% url 'user:user_profile_view' show.user %}" class="text-light card-link">{{show.user}}</a><br>
             <small class="text-light text-muted">{{show.published}}</small>
@@ -8,7 +8,7 @@
         <div class="card-body">
             {% if show.image %}
             <a href="{{show.get_absolute_url}}">
-                <img src="{{show.image.url}}" alt="image" style="max-width:100%;height:auto;" class="card-img-top">
+                <img src="{{show.image.url}}" alt="image" width="140" height="209" class="card-img-top">
             </a>
             {% endif %}
             <h2 class="card-title">{{show.title}}</h2>
@@ -34,5 +34,46 @@
 
         </div>
 
+    </div> -->
+    <div class="card mb-3" style="max-width: 800px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                {% if show.image %}
+                <a href="{{show.get_absolute_url}}">
+                    <img src="{{show.image.url}}" alt="image" class="card-img">
+                </a>
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-header">
+                    {{show.user}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{show.title}}</h5>
+                    <p class="card-text">
+                        {% if truncate %}
+                        {{show.content|linebreaks|truncatewords:5}}
+
+                        {% else %}
+                        {{show.content|linebreaks}}
+                        {% endif %}
+
+                    </p>
+                    {% if not detail %}
+                    <a href="{{show.get_absolute_url}}" class="card-link">View Detail</a>
+                    {% endif %}
+                    <p class="card-text"><small class="text-muted">{{show.published}}</small></p>
+
+                    {% if update_delete %}
+                    {% if request.user == obj.user %}
+                    <a href="{{show.get_update_url}}" class="card-link">Update</a>
+                    <a href="{{show.get_delete_url}}" class="card-link">Delete</a>
+
+                    {%endif%}
+                    {%endif%}
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

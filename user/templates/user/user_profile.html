@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 
+{% block title %}
+Ostendit | {{user}}
+{% endblock %}
+
+
 {% block content %}
 {% if user == request.user %}
 <div class="text-center">

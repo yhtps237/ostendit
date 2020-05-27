@@ -39,13 +39,13 @@ class ShowsManager(models.Manager):
 class Shows(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.SET_NULL, default=1, blank=True, null=True)
-    title = models.CharField(max_length=220)
-    slug = models.SlugField(unique=True)
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=False)
     image = models.ImageField(upload_to='image/', blank=True)
-    content = models.TextField()
+    content = models.TextField(blank=True)
     animation = models.BooleanField()
     published = models.DateTimeField(
-        auto_now=False, auto_now_add=False, blank=True)
+        auto_now=False, auto_now_add=False, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     objects = ShowsManager()
@@ -54,13 +54,13 @@ class Shows(models.Model):
         ordering = ['-published', '-timestamp', '-updated']
 
     def get_absolute_url(self):
-        return f'/shows/{self.slug}'
+        return f'/shows/{self.user}/{self.slug}/'
 
     def get_update_url(self):
-        return f'{self.get_absolute_url()}/edit/'
+        return f'{self.get_absolute_url()}edit/'
 
     def get_delete_url(self):
-        return f'{self.get_absolute_url()}/delete/'
+        return f'{self.get_absolute_url()}delete/'
 
     def __str__(self):
-        return self.title
+        return f'{self.user} | {self.title}'

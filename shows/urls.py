@@ -16,9 +16,9 @@ urlpatterns = [
     path('animation/', shows_list_view, name='animation'),
     path('new/', show_create_view, name='new'),
     path('all/', shows_list_view, name='all'),
-    path('<slug:slug>/edit/', show_update_view),
-    path('<slug:slug>/delete/', show_delete_view),
-    path('<slug:slug>/', show_detail_view),
+    path('<str:username>/<slug:slug>/', show_detail_view),
+    path('<str:username>/<slug:slug>/edit/', show_update_view),
+    path('<str:username>/<slug:slug>/delete/', show_delete_view),
     path('', shows_list_view),
 
 ]

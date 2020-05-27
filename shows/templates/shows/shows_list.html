@@ -12,7 +12,7 @@ Live Action
 {% endblock %}
 
 {% block content %}
-<div id="main" class="row">
+<div class="row">
     {% for show in queryset %}
     {% include 'shows/list_inline.html' with  show=show update_delete=False col=False truncate=True detail=False %}
     {% endfor %}
